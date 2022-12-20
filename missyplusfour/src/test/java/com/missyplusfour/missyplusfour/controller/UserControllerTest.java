@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
 import java.util.Objects;
 
 @RunWith(SpringRunner.class)
@@ -66,6 +67,15 @@ public class UserControllerTest {
         // Generic Response needs to be created
         ResponseEntity<GenericResponse> response = testRestTemplate.postForEntity(API_1_0_USERS, user, GenericResponse.class);
         assertThat(Objects.requireNonNull(response.getBody()).getMessage()).isNotNull();
+    }
+
+    @Test
+    public void postUser_whenUserIsValid_passwordIsHashedInDatabase() {
+        User user = createValidUser();
+        testRestTemplate.postForEntity(API_1_0_USERS, user, Object.class);
+        List<User> users = userRespository.findAll();
+        User inDB = users.get(0);
+        assertThat(inDB.getPassword()).isNotEqualTo(user.getPassword());
     }
 
     private User createValidUser() {

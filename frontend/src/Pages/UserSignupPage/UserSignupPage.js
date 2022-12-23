@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-import styles from './UserSignupPage.module.css';
+import styles from './UserSignupPage.module.scss';
 
 export class UserSignupPage extends Component {
 

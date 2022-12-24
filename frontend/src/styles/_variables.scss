@@ -1,11 +1,24 @@
-$primary: green;
-$white: white;
+$primary: hsla(224, 42, 56, 1);
+$secondary: hsla(338, 72, 49, 1);
+$warning: hsla(45, 84, 66, 1);
+$info: hsla(236, 29, 34, 1);
+$success: rgb(65,156,113);
+
+$white: hsla(180, 7, 94, 1);
+$black: hsla(60, 18, 4, 1);
+$gray: rgb(81,102,115);
+
+$yellow: hsla(39, 84, 66, 1);
+$lightBlue: hsla(202, 45, 72, 1);
+$text: hsla(60, 25, 1, 1);
+$pureWhite: hsla(191, 100, 99, 1)
 
 // :root {
-//   --primary: #39A9DB;
+//   --primary: #6078BF;
 //   --warning: #F9DC5C;
 //   --danger: #E84855;
 //   --success: #ABE188;
 //   --white: #fdfdfd;
 //   --dark: #181717;
 // }
+

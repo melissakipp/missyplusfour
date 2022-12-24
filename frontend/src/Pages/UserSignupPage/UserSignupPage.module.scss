@@ -1,3 +1,22 @@
-.form__lable {
+.form_label {
   display: block;
+  margin: 1rem 0 .5rem 0;
+}
+
+.margin_bottom {
+  margin-bottom: 1rem;
+}
+
+::-webkit-input-placeholder {
+  /* Edge */
+  font-size: 12px;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  font-size: 12px;
+}
+
+::placeholder {
+  font-size: 12px;
 }

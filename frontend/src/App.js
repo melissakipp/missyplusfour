@@ -1,6 +1,4 @@
-import './App.css';
-
-import UserSignupPage from './Pages/UserSignupPage/UserSignupPage';
+import UserSignupPage from './pages/UserSignupPage/UserSignupPage';
 
 function App() {
   return (

@@ -1,4 +1,5 @@
 import { Component } from "react";
+
 import { Button } from "../../components/ui/Button";
 
 import styles from './UserSignupPage.module.scss';
@@ -45,62 +46,67 @@ export class UserSignupPage extends Component {
 
   render() {
     return (
-      <main>
-        <h1>Sign Up</h1>
-        <form className="form">
-          
-        <label className={styles.form_label} htmlFor="displayName">Enter your display name</label>
-        <input 
-          name="displayName" 
-          className={styles.form_input}
-          id="formDisplayName" 
-          value={this.state.displayName} 
-          onChange={this.onChangeDisplayName} 
-          placeholder="Your display name" 
-        />
-        
-        <label className={styles.form_label} htmlFor="username">Enter a username</label>
-        <input 
-          name="username" 
-          className={styles.form_input}
-          id="formUsername" 
-          value={this.state.username} 
-          onChange={this.onChangeUsername} 
-          placeholder="Your username" 
-        />
-        
-        <label className={styles.form_label} htmlFor="password">Enter a password</label>
-        <input 
-          name="password" 
-          className={styles.form_input}
-          id="formPassword" 
-          type="password" 
-          value={this.state.password}
-          onChange={this.onChangePassword}
-          placeholder="Your password" 
-        />
+      <main className={styles.main}>
+        <div className={styles.formBg}>
+          <div className={styles.formContainer}>
+            {/* <h1>Sign Up</h1> */}
+            <form className={styles.form}>
+            <legend className={styles.legend}>Sign Up</legend>
+            <label className={styles.form_label} htmlFor="displayName">Enter your display name</label>
+            <input 
+              name="displayName" 
+              className={styles.form_input}
+              id="formDisplayName" 
+              value={this.state.displayName} 
+              onChange={this.onChangeDisplayName} 
+              placeholder="Your display name" 
+            />
+            
+            <label className={styles.form_label} htmlFor="username">Enter a username</label>
+            <input 
+              name="username" 
+              className={styles.form_input}
+              id="formUsername" 
+              value={this.state.username} 
+              onChange={this.onChangeUsername} 
+              placeholder="Your username" 
+            />
+            
+            <label className={styles.form_label} htmlFor="password">Enter a password</label>
+            <input 
+              name="password" 
+              className={styles.form_input}
+              id="formPassword" 
+              type="password" 
+              value={this.state.password}
+              onChange={this.onChangePassword}
+              placeholder="Your password" 
+            />
 
-        <label className={styles.form_label} htmlFor="confirmPassword">Confirm  password</label>
-        <input 
-          name="confirmPassword" 
-          className={`styles.form_input styles.margin_bottom`}
-          id="formConfirmPassword" 
-          type="password" 
-          value={this.state.confirmPassword}
-          onChange={this.onChangeConfirmPassword}
-          placeholder="Confirm password" 
-        />
+            <label className={styles.form_label} htmlFor="confirmPassword">Confirm  password</label>
+            <input 
+              name="confirmPassword" 
+              className={styles.form_input}
+              id="formConfirmPassword" 
+              type="password" 
+              value={this.state.confirmPassword}
+              onChange={this.onChangeConfirmPassword}
+              placeholder="Confirm password" 
+            />
 
-        <div>
-          <Button 
-            onClick={this.onClickSignup} 
-            type="submit"
-          >
-            Sign Up
-          </Button>
+            <div className={styles.button}>
+              <Button 
+                buttonStyle="btn--primary--solid"
+                onClick={this.onClickSignup} 
+                type="submit"
+              >
+                Sign Up
+              </Button>
+            </div>
+
+            </form>
+          </div>
         </div>
-
-        </form>
       </main>
     );
   }

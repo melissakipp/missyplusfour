@@ -1,10 +1,67 @@
-.form_label {
-  display: block;
-  margin: 1rem 0 .5rem 0;
+@import '../../styles/index';
+
+.main {
+  height: 100vh;
+  width: auto;
+  background-color: $white;
 }
 
-.margin_bottom {
-  margin-bottom: 1rem;
+.formBg {
+  // background-color: $info;
+  color: $white;
+  
+  overflow: hidden;
+  text-align: center;
+  border: none;
+    border-radius: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formContainer {
+  // border: 3px solid $white;
+  // border-radius: 10px;
+  // padding: 1rem 1rem 2.5rem 1rem;
+  // margin: 3rem 0;
+  //   max-width: 300px;
+  margin: 3rem;
+  background-color: $primary;
+  border: 1px solid $black;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 10px;
+  padding: 2rem;
+  // margin-top: 4px;
+}
+
+.form {
+  // display: flex;
+  // flex-direction: column;
+  // display: flex;
+  // flex-flow: column nowrap;
+  // align-items: center;
+  // justify-content: center;
+  padding: 2rem;
+  .legend {
+    font-size: 2rem;
+    font-weight: 900;
+    margin: 2rem 0 0 0;  
+  }
+
+  &_label {
+    display: block;
+    margin: 2rem 0 .5rem 0;
+    text-align: left;
+  }
+  &_input {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 10px 12px 10px;
+  }
+  .button {
+    padding: 1rem 0 2rem 0;
+  }
 }
 
 ::-webkit-input-placeholder {

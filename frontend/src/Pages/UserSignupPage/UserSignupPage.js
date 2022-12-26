@@ -1,6 +1,10 @@
-import { Component } from "react";
+import { Component } from 'react';
 
-import { Button } from "../../components/ui/Button";
+import './UserSignupPage.css';
+
+import Button from 'react-bootstrap/Button';
+import { BsFillPersonFill, BsFillDisplayFill } from 'react-icons/bs';
+import { MdPassword } from 'react-icons/md'
 
 export class UserSignupPage extends Component {
 
@@ -44,68 +48,89 @@ export class UserSignupPage extends Component {
 
   render() {
     return (
-      <main className="">        
-      <div className="">
-          <div className="">
-            {/* <h1>Sign Up</h1> */}
-            <form className="">
-            <legend className="">Sign Up</legend>
-            <label className="" htmlFor="displayName">Enter your display name</label>
-            <input 
-              name="displayName" 
-              className=""
-              id="formDisplayName" 
-              value={this.state.displayName} 
-              onChange={this.onChangeDisplayName} 
-              placeholder="Your display name" 
-            />
-            
-            <label className="" htmlFor="username">Enter a username</label>
-            <input 
-              name="username" 
-              className=""
-              id="formUsername" 
-              value={this.state.username} 
-              onChange={this.onChangeUsername} 
-              placeholder="Your username" 
-            />
-            
-            <label className="" htmlFor="password">Enter a password</label>
-            <input 
-              name="password" 
-              className=""
-              id="formPassword" 
-              type="password" 
-              value={this.state.password}
-              onChange={this.onChangePassword}
-              placeholder="Your password" 
-            />
+      <main>        
+        <div className='form-container'>
+        <h1 className='mt-3 text-center mb-3'>Sign Up</h1>
+        <div className='form-signup'>
+          <form className=''>
+            <fieldset className='container-sm'>
+              <label className='visually-hidden' htmlFor='displayName'>Enter your display name</label>
+              <div className='mb-4 input-group'>
+                <span className='input-group-text'>
+                  <BsFillPersonFill title='person icon' />
+                </span>
+                <input 
+                  name='displayName' 
+                  className='form-control'
+                  id='formDisplayName' 
+                  value={this.state.displayName} 
+                  onChange={this.onChangeDisplayName} 
+                  placeholder='Your display name' 
+                />
+              </div>
+              
+              <label className='visually-hidden' htmlFor='username'>Enter a username</label>
+              <div className='mb-4 input-group'>
+                <span className='input-group-text'>
+                  <BsFillDisplayFill title='monitor icon' />
+                </span>
+                <input 
+                  name='username' 
+                  className='form-control'
+                  id='formUsername' 
+                  value={this.state.username} 
+                  onChange={this.onChangeUsername} 
+                  placeholder='Your username' 
+                />
+              </div>
+              
+              <label className='visually-hidden' htmlFor='password'>Enter a password</label>
+              <div className='mb-4 input-group'>
+                <span className='input-group-text'>
+                  <MdPassword title='password icon' />
+                </span>
+                <input 
+                  name='password' 
+                  className='form-control'
+                  id='formPassword' 
+                  type='password' 
+                  value={this.state.password}
+                  onChange={this.onChangePassword}
+                  placeholder='Your password' 
+                />
+              </div>
 
-            <label className="" htmlFor="confirmPassword">Confirm  password</label>
-            <input 
-              name="confirmPassword" 
-              className=""
-              id="formConfirmPassword" 
-              type="password" 
-              value={this.state.confirmPassword}
-              onChange={this.onChangeConfirmPassword}
-              placeholder="Confirm password" 
-            />
+              <label className='visually-hidden' htmlFor='confirmPassword'>Confirm  password</label>
+              <div className='mb-4 input-group'>
+                <span className='input-group-text'>
+                  <MdPassword title='password icon' />
+                </span>
+                <input 
+                  name='confirmPassword' 
+                  className='form-control'
+                  id='formConfirmPassword' 
+                  type='password' 
+                  value={this.state.confirmPassword}
+                  onChange={this.onChangeConfirmPassword}
+                  placeholder='Confirm password' 
+                />
+              </div>
 
-            <div className="">
-              <Button 
-                buttonStyle="btn--primary--solid"
-                onClick={this.onClickSignup} 
-                type="submit"
+            </fieldset>
+
+
+            <div className='text-center mt-3'>
+              <Button
+                type='submit'
+                // onClick={onClickSignup}
               >
                 Sign Up
               </Button>
             </div>
-
-            </form>
-          </div>
+        </form>
         </div>
-      </main>
+      </div>
+    </main>
     );
   }
 }

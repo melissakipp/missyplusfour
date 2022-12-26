@@ -2,8 +2,6 @@ import { Component } from "react";
 
 import { Button } from "../../components/ui/Button";
 
-import styles from './UserSignupPage.module.scss';
-
 export class UserSignupPage extends Component {
 
   // State
@@ -46,36 +44,36 @@ export class UserSignupPage extends Component {
 
   render() {
     return (
-      <main className={styles.main}>
-        <div className={styles.formBg}>
-          <div className={styles.formContainer}>
+      <main className="">        
+      <div className="">
+          <div className="">
             {/* <h1>Sign Up</h1> */}
-            <form className={styles.form}>
-            <legend className={styles.legend}>Sign Up</legend>
-            <label className={styles.form_label} htmlFor="displayName">Enter your display name</label>
+            <form className="">
+            <legend className="">Sign Up</legend>
+            <label className="" htmlFor="displayName">Enter your display name</label>
             <input 
               name="displayName" 
-              className={styles.form_input}
+              className=""
               id="formDisplayName" 
               value={this.state.displayName} 
               onChange={this.onChangeDisplayName} 
               placeholder="Your display name" 
             />
             
-            <label className={styles.form_label} htmlFor="username">Enter a username</label>
+            <label className="" htmlFor="username">Enter a username</label>
             <input 
               name="username" 
-              className={styles.form_input}
+              className=""
               id="formUsername" 
               value={this.state.username} 
               onChange={this.onChangeUsername} 
               placeholder="Your username" 
             />
             
-            <label className={styles.form_label} htmlFor="password">Enter a password</label>
+            <label className="" htmlFor="password">Enter a password</label>
             <input 
               name="password" 
-              className={styles.form_input}
+              className=""
               id="formPassword" 
               type="password" 
               value={this.state.password}
@@ -83,10 +81,10 @@ export class UserSignupPage extends Component {
               placeholder="Your password" 
             />
 
-            <label className={styles.form_label} htmlFor="confirmPassword">Confirm  password</label>
+            <label className="" htmlFor="confirmPassword">Confirm  password</label>
             <input 
               name="confirmPassword" 
-              className={styles.form_input}
+              className=""
               id="formConfirmPassword" 
               type="password" 
               value={this.state.confirmPassword}
@@ -94,7 +92,7 @@ export class UserSignupPage extends Component {
               placeholder="Confirm password" 
             />
 
-            <div className={styles.button}>
+            <div className="">
               <Button 
                 buttonStyle="btn--primary--solid"
                 onClick={this.onClickSignup} 

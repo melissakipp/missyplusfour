@@ -11,7 +11,7 @@ describe('UserSignupPage', () => {
 
     it('has header of Sign Up', () => {
       const { container } = render(<UserSignupPage />);
-      const header = container.querySelector('h1');
+      const header = container.querySelector('legend');
       expect(header).toHaveTextContent('Sign Up');
     });
 

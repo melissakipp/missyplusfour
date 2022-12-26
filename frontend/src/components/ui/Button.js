@@ -1,5 +1,3 @@
-import styles from './Button.module.scss';
-
 const __STYLES__ = [
   "btn--primary--solid",
   "btn--warning--solid",
@@ -18,13 +16,13 @@ export const Button = ({
   buttonStyle
 }) => {
 
-  const checkButtonStyle = __STYLES__.includes(styles.buttonStyle)
-    ? styles.buttonStyle
+  const checkButtonStyle = __STYLES__.includes(buttonStyle)
+    ? buttonStyle
     : __STYLES__[0];
 
   return (
     <button
-      className={`btn styles.${checkButtonStyle}`}
+      className={`btn ${checkButtonStyle}`}
       onClick={onClick}
       type={type}
     >

@@ -1,7 +1,7 @@
 package com.missyplusfour.missyplusfour.controller;
 
 import com.missyplusfour.missyplusfour.model.User;
-import com.missyplusfour.missyplusfour.repository.UserRespository;
+import com.missyplusfour.missyplusfour.repository.UserRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -32,11 +32,11 @@ public class UserControllerTest {
     TestRestTemplate testRestTemplate;
 
     @Autowired // Spring Boot Dependency Injection (Field Injection)
-    UserRespository userRespository;
+    UserRepository userRepository;
 
     @Before
     public void cleanup() {
-        userRespository.deleteAll();
+        userRepository.deleteAll();
     }
 
     @Test
@@ -53,7 +53,7 @@ public class UserControllerTest {
     public void postUser_whenUserIsValid_userSavedToDatabase() {
         User user = createValidUser();
         testRestTemplate.postForEntity(API_1_0_USERS, user, Object.class);
-        assertThat(userRespository.count()).isEqualTo(1);
+        assertThat(userRepository.count()).isEqualTo(1);
         // This test fails because we are getting a zero returned
         // Create in the controller
     }
@@ -71,7 +71,7 @@ public class UserControllerTest {
     public void postUser_whenUserIsValid_passwordIsHashedInDatabase() {
         User user = createValidUser();
         testRestTemplate.postForEntity(API_1_0_USERS, user, Object.class);
-        List<User> users = userRespository.findAll();
+        List<User> users = userRepository.findAll();
         User inDB = users.get(0);
         assertThat(inDB.getPassword()).isNotEqualTo(user.getPassword());
     }

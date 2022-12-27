@@ -1,7 +1,7 @@
 package com.missyplusfour.missyplusfour.service;
 
 import com.missyplusfour.missyplusfour.model.User;
-import com.missyplusfour.missyplusfour.repository.UserRespository;
+import com.missyplusfour.missyplusfour.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -10,18 +10,18 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     // Field Injection - User service will be passing the user save operations to user repository.
-    UserRespository userRespository;
+    UserRepository userRepository;
 
     BCryptPasswordEncoder passwordEncoder;
 
-    public UserService(UserRespository userRespository) {
+    public UserService(UserRepository userRepository) {
         super();
-        this.userRespository = userRespository;
+        this.userRepository = userRepository;
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
     public User save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRespository.save(user);
+        return userRepository.save(user);
     }
 }

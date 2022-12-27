@@ -1,8 +1,14 @@
 import UserSignupPage from './pages/UserSignupPage/UserSignupPage';
 
+import * as apiCalls from './api/apiCalls';
+
+const actions = {
+  postSignup: apiCalls.signup
+}
+
 function App() {
   return (
-    <UserSignupPage />
+    <UserSignupPage actions={actions} />
   );
 }
 

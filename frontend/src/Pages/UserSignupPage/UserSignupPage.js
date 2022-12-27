@@ -1,53 +1,73 @@
-import { Component } from 'react';
+import React, { useState } from 'react';
+import Input from '../components/Input';
+import ButtonWithProgress from '../components/ButtonWithProgress';
+import { connect } from 'react-redux';
+import * as authActions from '../redux/authActions';
 
 import './UserSignupPage.css';
 
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import { BsFillPersonFill, BsFillDisplayFill } from 'react-icons/bs';
-import { MdPassword } from 'react-icons/md'
+import { MdPassword } from 'react-icons/md';
 
-export class UserSignupPage extends Component {
-
-  // State
-  state = {
+export const UserSignupPage = (props) =>  {
+  const [form, setForm] = useState({
     displayName: '',
     username: '',
     password: '',
-    confirmPassword: '',
+    passwordRepeat: ''
+  });
+  const [errors, setErrors] = useState({});
+  const [pendingApiCall, setPendingApiCall] = useState(false);
+
+  const onChange = (event) => {
+    const { value, name } = event.target;
+
+    setForm((previousForm) => {
+      return {
+        ...previousForm,
+        [name]: value
+      };
+    });
+
+    setErrors((previousErrors) => {
+      return {
+        ...previousErrors,
+        [name]: undefined
+      };
+    });
+  };
+
+  const onClickSignup = () => {
+    const user = {
+      username: form.username,
+      displayName: form.displayName,
+      password: form.password
+    };
+    setPendingApiCall(true);
+    props.actions
+      .postSignup(user)
+      .then((response) => {
+        setPendingApiCall(false);
+        props.history.push('/');
+      })
+      .catch((apiError) => {
+        if (apiError.response.data && apiError.response.data.validationErrors) {
+          setErrors(apiError.response.data.validationErrors);
+        }
+        setPendingApiCall(false);
+      });
+  };
+
+  let passwordRepeatError;
+  const { password, passwordRepeat } = form;
+  if (password || passwordRepeat) {
+    passwordRepeatError =
+      password === passwordRepeat ? '' : 'Does not match to password';
   }
 
-  // Callback function that handles the changes in the form (capture the updates for the state)
-  onChangeDisplayName = (event) => {
-    const value = event.target.value;
-    this.setState({ displayName: value });
-  };
 
-  onChangeUsername = (event) => {
-    const value = event.target.value;
-    this.setState({ username: value });
-  };
-
-  onChangePassword = (event) => {
-    const value = event.target.value;
-    this.setState({ password: value });
-  };
-
-  onChangeConfirmPassword = (event) => {
-    const value = event.target.value;
-    this.setState({ confirmPassword: value });
-  };
-
-  onClickSignup = () => {
-    const user = {
-      username: this.state.username,
-      displayName: this.state.displayName,
-      password: this.state.password
-    };
-    this.props.actions.postSignup(user); 
-  };
-
-  render() {
-    return (
+  return (
       <main>        
         <div className='form-container'>
         <h1 className='mt-3 text-center mb-3'>Sign Up</h1>
@@ -120,28 +140,38 @@ export class UserSignupPage extends Component {
 
 
             <div className='text-center mt-3'>
-              <Button
+              <button
                 type='submit'
                 // onClick={onClickSignup}
               >
                 Sign Up
-              </Button>
+              </button>
             </div>
         </form>
         </div>
       </div>
     </main>
     );
-  }
 }
 
 UserSignupPage.defaultProps = {
-    actions: {
-        postSignup: () =>
-            new Promise((resolve, reject) => {
-                resolve({})
-            })
-    }
-}
+  actions: {
+    postSignup: () =>
+      new Promise((resolve, reject) => {
+        resolve({});
+      })
+  },
+  history: {
+    push: () => {}
+  }
+};
 
-export default UserSignupPage;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: {
+      postSignup: (user) => dispatch(authActions.signupHandler(user))
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(UserSignupPage);

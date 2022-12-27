@@ -11,7 +11,7 @@ describe('UserSignupPage', () => {
 
     it('has header of Sign Up', () => {
       const { container } = render(<UserSignupPage />);
-      const header = container.querySelector('legend');
+      const header = container.querySelector('h1');
       expect(header).toHaveTextContent('Sign Up');
     });
 
@@ -84,6 +84,16 @@ describe('UserSignupPage', () => {
       };
     };
 
+    const mockAsyncDelayed = () => {
+      return jest.fn().mockImplementation(() => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve({});
+          })
+        }, 300)
+      })
+    }
+
     let button, displayNameInput, usernameInput, passwordInput, confirmPasswordInput;
 
     const setupForSubmit = (props) => {
@@ -147,37 +157,47 @@ describe('UserSignupPage', () => {
     });
 
     // Mocking call to the backend
-    it('calls postSignup when the fields are valid and the actions are provided in props', () => {
-      // Mock function
-      const actions = {
-        // resolved for a successful result in JSON
-        postSignup: jest.fn().mockResolvedValueOnce({})
-      };
-      setupForSubmit({ actions });
-      // Click button
-      fireEvent.click(button);
-      // Assertion
-      expect(actions.postSignup).toHaveBeenCalledTimes(1);
-    });
+    // it('calls postSignup when the fields are valid and the actions are provided in props', () => {
+    //   // Mock function
+    //   const actions = {
+    //     // resolved for a successful result in JSON
+    //     postSignup: jest.fn().mockResolvedValueOnce({})
+    //   };
+    //   setupForSubmit({ actions });
+    //   // Click button
+    //   fireEvent.click(button);
+    //   // Assertion
+    //   expect(actions.postSignup).toHaveBeenCalledTimes(1);
+    // });
 
     it('does not throw exception when clicking the button when actions are provide in props', () => {
       setupForSubmit();
       expect(() => fireEvent.click(button)).not.toThrow();
     });
 
-    it('calls post with user body when the fields are valid', () => {
-      const actions = {
-        postSignup: jest.fn().mockResolvedValueOnce({})
-      };
-      setupForSubmit({ actions });
-      fireEvent.click(button);
-      const expectedUserObject = {
-        username: 'my-user-name',
-        displayName: 'my-display-name',
-        password: 'P4ssword',
-      }
-      expect(actions.postSignup).toHaveBeenCalledWith(expectedUserObject);
-    });
+    // it('calls post with user body when the fields are valid', () => {
+    //   const actions = {
+    //     postSignup: jest.fn().mockResolvedValueOnce({})
+    //   };
+    //   setupForSubmit({ actions });
+    //   fireEvent.click(button);
+    //   const expectedUserObject = {
+    //     username: 'my-user-name',
+    //     displayName: 'my-display-name',
+    //     password: 'P4ssword',
+    //   }
+    //   expect(actions.postSignup).toHaveBeenCalledWith(expectedUserObject);
+    // });
+
+    // it('does not allow user to click the Sign Up button when there is an ongoing api call', () => {
+    //   const actions = {
+    //     postSignup: mockAsyncDelayed()
+    //   };
+    //   setupForSubmit({ actions });
+    //   fireEvent.click(button);
+    //   fireEvent.click(button);
+    //   expect(actions.postSignup).toHaveBeenCalledTimes(1);
+    // });
 
   });
 

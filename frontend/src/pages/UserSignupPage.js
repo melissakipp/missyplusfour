@@ -8,7 +8,8 @@ export class UserSignupPage extends Component {
     displayName: '',
     username: '',
     password: '',
-    passwordRepeat: ''
+    passwordRepeat: '',
+    pendingApiCall: false
   }
 
   onChangeDisplayName = (event) => {
@@ -37,7 +38,15 @@ export class UserSignupPage extends Component {
       displayName: this.state.displayName,
       password: this.state.password
     }
-    this.props.actions.postSignup(user);
+    this.setState({pendingApiCall: true})
+    this.props.actions
+      .postSignup(user)
+      .then((response) => {
+      this.setState({ pendingApiCall: false });
+      })
+      .catch((error) => {
+        this.setState({ pendingApiCall: false });
+      });
   }
 
   render() {
@@ -102,7 +111,13 @@ export class UserSignupPage extends Component {
               className='btn btn-primary'
               type='submit'
               onClick={this.onClickSignup} 
-            >Sign Up</button>
+              disabled={this.state.pendingApiCall}
+            >
+            {this.state.pendingApiCall && (<div className='spinner-border text-light spinner-border-sm mr-sm-1' role='status'>
+              <span className='visually-hidden'>Loading...</span>
+            </div>)}
+              Sign Up
+            </button>
           </div>
 
         </form>

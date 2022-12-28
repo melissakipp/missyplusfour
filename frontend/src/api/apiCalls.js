@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-export const signup = () => {
-  return axios.post();
+export const signup = (user) => {
+  return axios.post('/api/1.0/users', user);
 }

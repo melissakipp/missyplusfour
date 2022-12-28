@@ -214,7 +214,6 @@ describe('UserSignupPage', () => {
       };
       const { queryByText } = setupForSubmit({ actions });
       fireEvent.click(button);
-
       const spinner = queryByText('Loading...');
       await waitForElementToBeRemoved(spinner);
       expect(spinner).not.toBeInTheDocument();

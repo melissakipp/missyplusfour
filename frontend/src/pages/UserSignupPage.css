@@ -1,0 +1,10 @@
+.form__signup { 
+  max-width: 500px;
+}
+
+label {
+  font-size: 1.15em;
+  font-weight: 900;
+  margin: 1.5rem 0 0 0;
+  padding: 0 0 .5rem 0;
+}

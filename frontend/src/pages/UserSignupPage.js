@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './UserSignupPage.css'
+
 export class UserSignupPage extends Component {
 
   state = {
@@ -41,14 +43,16 @@ export class UserSignupPage extends Component {
   render() {
     return (
       <main>
-        <h1>Sign Up</h1>
+        <div className='container form__signup'>
+        <h1 className='text-center'>Sign Up</h1>
+
         <form>
           <fieldset>
-
-            <div>
+            <div className='col-12 mb-3'>
               <label htmlFor='displayName'>Enter your display name</label>
               <input 
                 type='text' 
+                className='form-control' 
                 id='displayName' 
                 placeholder='Your display name' 
                 value={this.state.displayName} 
@@ -56,10 +60,11 @@ export class UserSignupPage extends Component {
               />
             </div>
 
-            <div>
+            <div className='col-12 mb-3'>
               <label htmlFor='username'>Enter your username</label>
               <input 
                 type='text' 
+                className='form-control' 
                 id='username' 
                 placeholder='Your username' 
                 value={this.state.username} 
@@ -67,20 +72,22 @@ export class UserSignupPage extends Component {
               />
             </div>
 
-            <div>
+            <div className='col-12 mb-3'>
               <label htmlFor='password'>Enter a password</label>
               <input 
                 type='password' 
+                className='form-control' 
                 id='password' 
                 placeholder='Your password' 
                 value={this.state.password} 
                 onChange={this.onChangePassword}
               />
             </div>
-            <div>
+            <div className='col-12 mb-3'>
               <label htmlFor='password'>Confirm your password</label>
               <input 
                 type='password' 
+                className='form-control' 
                 id='password' 
                 placeholder='Repeat your password' 
                 value={this.state.passwordRepeat} 
@@ -90,14 +97,16 @@ export class UserSignupPage extends Component {
 
           </fieldset>
 
-          <div>
+          <div className='text-center'>
             <button 
+              className='btn btn-primary'
               type='submit'
               onClick={this.onClickSignup} 
             >Sign Up</button>
           </div>
 
         </form>
+        </div>
       </main>
     );
   }

@@ -21,6 +21,7 @@ public class UserService {
     }
 
     public User save(User user) {
+        // Check if we have user in DB with this username
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }

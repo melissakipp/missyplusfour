@@ -1,5 +1,5 @@
-import UserSignupPage from './pages/UserSignupPage';
-import * as apiCalls from './api/apiCalls';
+import UserSignupPage from '../pages/UserSignupPage';
+import * as apiCalls from '../api/apiCalls';
 
 const actions = {
   postSignup: apiCalls.signup
